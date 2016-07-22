@@ -1,6 +1,6 @@
 import boto, re, os, threading,time
 from multiprocessing.pool import ThreadPool
-bucketname = 'valeo-tua1-s3-001'
+bucketname = 'place name here'
 links = []
 	
 def upload_file (root, url_root,filename):
@@ -12,7 +12,7 @@ def upload_file (root, url_root,filename):
 	k.key = os.path.join(url_root,filename)
 	k.set_contents_from_filename(root+filename)
 	url = k.generate_url(expires_in=0, query_auth=False)
-	tua_url = url.replace('https://valeo-tua1-s3-001.s3.amazonaws.com/', '')
+	tua_url = url.replace('https://'+bucketname+'.s3.amazonaws.com/', '')
 	global links
 	#if not tua_url in links:
 	links.append(tua_url)
